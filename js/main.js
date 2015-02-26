@@ -1,33 +1,4 @@
 
-<?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-if(! $conn )
-{
-  die('Could not connect: ' . mysql_error());
-}
-$sql = 'SELECT school_name, school_logo FROM contestants';
-
-mysql_select_db('itolympics');
-$retval = mysql_query( $sql, $conn );
-if(! $retval )
-{
-  die('Could not get data: ' . mysql_error());
-}
-while($row = mysql_fetch_array($retval, MYSQL_NUM))
-{
-  	$data = array($row['school_name']).
-}
-mysql_free_result($retval);
-echo "Fetched data successfully\n";
-mysql_close($conn);
-?>
-
-var data = <?php echo json_encode($data); ?>;
-
-
 var Teams = [
 	{name: "Team 1", score: 0, $scoreElem: undefined},
 	{name: "Team 2", score: 0, $scoreElem: undefined},
@@ -42,20 +13,19 @@ var Teams = [
 	{name: "Team 11", score: 0, $scoreElem: undefined}
 ];
 var MaxScore = 999;
-var LevelRnd = 
 
 function UpdateScoreDisplay() {
-	$(".teamname[data-teamIndex=0]").text(data[0]);
-	$(".teamname[data-teamIndex=1]").text(data[1]);
-	$(".teamname[data-teamIndex=2]").text(data[2]);
-	$(".teamname[data-teamIndex=3]").text(data[3]);
-	$(".teamname[data-teamIndex=4]").text(data[4]);
-	$(".teamname[data-teamIndex=5]").text(data[5]);
-	$(".teamname[data-teamIndex=6]").text(data[6]);
-	$(".teamname[data-teamIndex=7]").text(data[7]);
-	$(".teamname[data-teamIndex=8]").text(data[8]);
-	$(".teamname[data-teamIndex=9]").text(data[9]);
-	$(".teamname[data-teamIndex=10]").text(data[10]);
+	$(".teamname[data-teamIndex=0]").text(Teams[0].name);
+	$(".teamname[data-teamIndex=1]").text(Teams[1].name);
+	$(".teamname[data-teamIndex=2]").text(Teams[2].name);
+	$(".teamname[data-teamIndex=3]").text(Teams[3].name);
+	$(".teamname[data-teamIndex=4]").text(Teams[4].name);
+	$(".teamname[data-teamIndex=5]").text(Teams[5].name);
+	$(".teamname[data-teamIndex=6]").text(Teams[6].name);
+	$(".teamname[data-teamIndex=7]").text(Teams[7].name);
+	$(".teamname[data-teamIndex=8]").text(Teams[8].name);
+	$(".teamname[data-teamIndex=9]").text(Teams[9].name);
+	$(".teamname[data-teamIndex=10]").text(Teams[10].name);
 	$("#score1").text(Teams[0].score);
 	if (Teams[0].score < 0) {
 		Teams[0].$scoreElem.addClass("scoreneg");

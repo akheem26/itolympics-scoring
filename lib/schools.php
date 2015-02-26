@@ -15,15 +15,10 @@ if(! $retval )
 {
   die('Could not get data: ' . mysql_error());
 }
-while($row = mysql_fetch_array($retval, MYSQL_NUM))
+
+$arrContestants = array();
+while($row = mysql_fetch_assoc($retval) )
 {
-    echo "School Name:{$row[0]}  <br/> ";
-  
-    $img= $row[1];
-	echo "School Logo:".$img;
-	echo "<br/>";
+    $arrContestants[] = array($row['school_name'],$row['school_logo']);
 }
-mysql_free_result($retval);
-echo "Fetched data successfully\n";
-mysql_close($conn);
 ?>
